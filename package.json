@@ -1,7 +1,11 @@
 {
   "name": "@himanoa/schemaless-validator",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "type": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "author": "himanoa <matsunoappy@gmail.com>",
   "license": "MIT",
   "private": false,
