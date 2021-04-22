@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "main": "lib/index-cjs.js",
   "module": "lib/index-esm.js",
-  "type": "lib/index.d.ts",
+  "type": "lib/lib.d.ts",
   "files": [
     "lib"
   ],
