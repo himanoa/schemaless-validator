@@ -32,7 +32,7 @@ npm install @himanoa/schemaless-validator
 or
 
 ```
-yarn add @himanoa/schemaless
+yarn add @himanoa/schemaless-validator
 ```
 
 ## API
