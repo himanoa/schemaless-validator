@@ -1,4 +1,4 @@
-name: run test and lint
+name: run test
 
 on: [push, pull_request]
 
