@@ -12,7 +12,7 @@ export const validate: Validate = (validator) => {
   validator(assert)
 
   if(0 < errors.length) {
-    Promise.reject(errors)
+    return Promise.reject(errors)
   }
 
   return Promise.resolve()
