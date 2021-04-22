@@ -1,13 +1,24 @@
-import { mapToPromiseArray, ValidatorMap } from './lib'
+import { validate } from './lib'
 
-describe("mapToPromiseArray", () => {
-  it("not error", async () => {
-    const validateMap: ValidatorMap<string> = {
-      value: "foobar",
-      validators: [(i: string) => i === "foobar" ? Promise.resolve() : Promise.reject("input is not foobar")]
-    }
+describe("validate", () => {
+  it("then", () => {
+    validate((assert) => {
+      assert(true, '絶対にこのエラーメッセージはでません')
+    }).then((d) => {
+      expect(d).toBe(undefined)
+    }).catch(()=> {
+      fail("ここには到達しないはず")
+    })
+  })
+  it("error", () => {
+    const name: string = "foo"
+    const money = -12
 
-    await Promise.all(mapToPromiseArray([validateMap]))
-    expect(1).toBe(1)
+    validate((assert) => {
+      assert(0 < money, "金額は0円以上にしてください")
+      assert(name === "Himanoa", "おまえはひまのあではない")
+    }).catch(err => {
+      expect(err).toStrictEqual(["金額は0円以上にしてください", "おまえはひまのあではない"])
+    })
   })
 })

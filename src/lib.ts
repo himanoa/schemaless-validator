@@ -1,22 +1,20 @@
-export type Validator<T> = (input: T) => Promise<void> 
+export type Assertion = (cond: boolean, exceptMessage: string) => void 
 
-export type ValidatorMap<T = unknown> = {
-  value: T,
-  validators: ReadonlyArray<Validator<T>>
+type Validate = (validator: (check: (cond: boolean, exceptMessage: string) => void) => void) => Promise<void>
+
+export const validate: Validate = (validator) => {
+  const errors: string[] = []
+
+  const assert: Assertion = (cond, exceptMessage) => {
+    if(!cond) errors.push(exceptMessage)
+  }
+
+  validator(assert)
+
+  if(0 < errors.length) {
+    Promise.reject(errors)
+  }
+
+  return Promise.resolve()
 }
 
-/**
- * @param inputs validate target value and validator functions(array)
- * @since 2.10.0
- */
-export function mapToPromiseArray<T>(inputs: ReadonlyArray<ValidatorMap<T>>): Promise<void>[] {
-  return inputs.reduce<Promise<void>[]>(
-    (acc, i) => {
-      const validatorPromises = i.validators.map(
-        validate => validate(i.value)
-      )
-      return[...acc, ...validatorPromises]
-    },
-    []
-  )
-}
