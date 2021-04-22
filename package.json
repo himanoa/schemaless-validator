@@ -18,5 +18,8 @@
   "scripts": {
     "build": "tsc --noEmit && rollup -c ./rollup.config.js",
     "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
