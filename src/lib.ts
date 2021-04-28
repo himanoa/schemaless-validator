@@ -1,11 +1,11 @@
-export type Assertion = (cond: boolean, exceptMessage: string) => void 
+export type Assertion<T> = (cond: boolean, exceptMessage: T) => void 
 
-type Validate = (validator: (check: (cond: boolean, exceptMessage: string) => void) => void) => Promise<void>
+type Validator<T> = (assert: Assertion<T>) => void
 
-export const validate: Validate = (validator) => {
-  const errors: string[] = []
+export function validate<T>(validator: Validator<T>) {
+  const errors: T[] = []
 
-  const assert: Assertion = (cond, exceptMessage) => {
+  const assert: Assertion<T> = (cond, exceptMessage) => {
     if(!cond) errors.push(exceptMessage)
   }
 
@@ -17,4 +17,3 @@ export const validate: Validate = (validator) => {
 
   return Promise.resolve()
 }
-
