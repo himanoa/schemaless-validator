@@ -1,6 +1,6 @@
 {
   "name": "@himanoa/schemaless-validator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "lib/index-cjs.js",
   "module": "lib/index-esm.js",
   "type": "lib/lib.d.ts",
