@@ -40,6 +40,7 @@ yarn add @himanoa/schemaless-validator
 ### `validate(validator: (assert: (cond: boolean, exceptMessage: string)) => void): Promise<void>`
 
 Execute validator function.
+
 Return the `Promise.resolve<void>` if error array is empty when after execute `validator` and return the `Promise.resolve(exceptMessageArray)` when error is not empty
 
 See. [test case](https://github.com/himanoa/schemaless-validator/blob/master/src/lib.test.ts#L17-L22)
